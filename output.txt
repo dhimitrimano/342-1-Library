@@ -1,0 +1,684 @@
+Sun Oct 11 12:24:52 PDT 2020
+Linux csslab7.uwb.edu 3.10.0-1127.19.1.el7.x86_64 #1 SMP Tue Aug 25 17:23:54 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+uid=1091439(dhimitri) gid=2121091439(dhimitri) groups=2121091439(dhimitri),605559(lab-access)
+=====================================================
+1. Compiles without warnings with -Wall -Wextra flags
+=====================================================
+=====================================================
+2. Runs and produces correct output
+=====================================================
+test1 complete
+test2 complete
+0: Gatsby
+test3 complete
+0: Don Quixote
+1: Gatsby
+2: Harry Potter
+test4 complete
+10
+illegal exception 5
+error: library is full, so book missingbk cannot be inserted
+illegal exception 10
+error: location 7 is out of bounds, so book book -2 cannot be inserted
+0: book 1
+1: book 2
+2: book 4
+3: book 5
+4: book 6
+5: book 7
+6: book 8
+7: book 9
+8: final book
+illegal exception 1
+error: no book at location 9
+illegal exception 2
+error: invalid location -1 is either less than zero or equal to or greater than the max size of 10
+0: book 2
+1: book 4
+2: book 5
+3: book 6
+4: book 7
+5: book 8
+6: book -2
+7: book 9
+8: vinyl booke
+illegal exception 8
+error: invalid location 14 is either less than zero or equal to or greater than the max size of 10
+illegal exception 11
+error: invalid location -4 is either less than zero or equal to or greater than the max size of 10, so book book at -4 cannot be inserted
+test5 complete
+*** Executing commands from test-1.txt
+Executing: size
+0
+Executing: max_size
+10
+Executing: empty
+1
+Executing: print
+[]
+Executing: push_back Ulysses
+Executing: size
+1
+Executing: empty
+0
+Executing: print
+[Ulysses]
+Executing: push_back Gatsby
+Executing: size
+2
+Executing: front
+Ulysses
+Executing: back
+Gatsby
+Executing: print
+[Ulysses, Gatsby]
+Executing: erase 0
+0: Gatsby
+Executing: front
+Gatsby
+Executing: back
+Gatsby
+Executing: print
+[Gatsby]
+*** Executing commands from test-2.txt
+Executing: push_back Ulysses
+Executing: push_back Gatsby
+Executing: push_back Harry Potter
+Executing: insertAt 0 Don Quixote
+Executing: print
+[Don Quixote, Ulysses, Gatsby, Harry Potter]
+Executing: erase 1
+0: Don Quixote
+1: Gatsby
+2: Harry Potter
+Executing: print
+[Don Quixote, Gatsby, Harry Potter]
+*** Executing commands from test-3.txt
+Executing: push_back Dummy
+Executing: pop_back
+Executing: print
+[]
+Invalid command: garbage_command
+Executing: pop_back
+illegal exception 6
+error: library is empty
+Executing: front
+illegal exception 3
+error: library is empty
+NULL_Book
+Executing: back
+illegal exception 4
+error: library is empty
+NULL_Book
+Executing: erase 0
+illegal exception 7
+error: no book at location 0
+Executing: erase 3
+illegal exception 7
+error: no book at location 3
+Executing: insertAt 3 at 0
+illegal exception 9
+error: size 0 is greater than the max size of 10, so book at 0 cannot be inserted in location 3
+Executing: at 5
+illegal exception 1
+error: no book at location 5
+NULL_Book
+Executing: push_back A0
+Executing: push_back A1
+Executing: push_back A2
+Executing: push_back A3
+Executing: push_back A4
+Executing: push_back A5
+Executing: push_back A6
+Executing: push_back A7
+Executing: push_back A8
+Executing: push_back A9
+Executing: push_back A10
+illegal exception 5
+error: library is full, so book A10 cannot be inserted
+Executing: print
+[A0, A1, A2, A3, A4, A5, A6, A7, A8, A9]
+Done.
+=====================================================
+3. clang-tidy warnings are fixed
+=====================================================
+12550 warnings generated.
+23450 warnings generated.
+36019 warnings generated.
+Suppressed 36022 warnings (36019 in non-user code, 3 NOLINT).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+=====================================================
+4. clang-format does not find any formatting issues
+=====================================================
+Running clang-format on ./library-commands.cpp
+Running clang-format on ./library.cpp
+Running clang-format on ./main.cpp
+=====================================================
+5. No memory leaks using g++
+=====================================================
+illegal exception 5
+error: library is full, so book missingbk cannot be inserted
+illegal exception 10
+error: location 7 is out of bounds, so book book -2 cannot be inserted
+illegal exception 1
+error: no book at location 9
+illegal exception 2
+error: invalid location -1 is either less than zero or equal to or greater than the max size of 10
+illegal exception 8
+error: invalid location 14 is either less than zero or equal to or greater than the max size of 10
+illegal exception 11
+error: invalid location -4 is either less than zero or equal to or greater than the max size of 10, so book book at -4 cannot be inserted
+illegal exception 6
+error: library is empty
+illegal exception 3
+error: library is empty
+illegal exception 4
+error: library is empty
+illegal exception 7
+error: no book at location 0
+illegal exception 7
+error: no book at location 3
+illegal exception 9
+error: size 0 is greater than the max size of 10, so book at 0 cannot be inserted in location 3
+illegal exception 1
+error: no book at location 5
+illegal exception 5
+error: library is full, so book A10 cannot be inserted
+=====================================================
+6. No memory leaks using valgrind, look for "definitely lost" 
+=====================================================
+illegal exception 5
+error: library is full, so book missingbk cannot be inserted
+illegal exception 10
+error: location 7 is out of bounds, so book book -2 cannot be inserted
+illegal exception 1
+error: no book at location 9
+illegal exception 2
+error: invalid location -1 is either less than zero or equal to or greater than the max size of 10
+illegal exception 8
+error: invalid location 14 is either less than zero or equal to or greater than the max size of 10
+illegal exception 11
+error: invalid location -4 is either less than zero or equal to or greater than the max size of 10, so book book at -4 cannot be inserted
+illegal exception 6
+error: library is empty
+illegal exception 3
+error: library is empty
+illegal exception 4
+error: library is empty
+illegal exception 7
+error: no book at location 0
+illegal exception 7
+error: no book at location 3
+illegal exception 9
+error: size 0 is greater than the max size of 10, so book at 0 cannot be inserted in location 3
+illegal exception 1
+error: no book at location 5
+illegal exception 5
+error: library is full, so book A10 cannot be inserted
+==25314== Memcheck, a memory error detector
+==25314== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==25314== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==25314== Command: ./a.out test-1.txt test-2.txt test-3.txt
+==25314== Parent PID: 25233
+==25314== 
+==25314== 
+==25314== HEAP SUMMARY:
+==25314==     in use at exit: 0 bytes in 0 blocks
+==25314==   total heap usage: 17 allocs, 17 frees, 100,982 bytes allocated
+==25314== 
+==25314== All heap blocks were freed -- no leaks are possible
+==25314== 
+==25314== For lists of detected and suppressed errors, rerun with: -s
+==25314== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+=====================================================
+7. Tests have full code coverage
+=====================================================
+illegal exception 5
+error: library is full, so book missingbk cannot be inserted
+illegal exception 10
+error: location 7 is out of bounds, so book book -2 cannot be inserted
+illegal exception 1
+error: no book at location 9
+illegal exception 2
+error: invalid location -1 is either less than zero or equal to or greater than the max size of 10
+illegal exception 8
+error: invalid location 14 is either less than zero or equal to or greater than the max size of 10
+illegal exception 11
+error: invalid location -4 is either less than zero or equal to or greater than the max size of 10, so book book at -4 cannot be inserted
+illegal exception 6
+error: library is empty
+illegal exception 3
+error: library is empty
+illegal exception 4
+error: library is empty
+illegal exception 7
+error: no book at location 0
+illegal exception 7
+error: no book at location 3
+illegal exception 9
+error: size 0 is greater than the max size of 10, so book at 0 cannot be inserted in location 3
+illegal exception 1
+error: no book at location 5
+illegal exception 5
+error: library is full, so book A10 cannot be inserted
+File '/home/NETID/dhimitri/2020au342c-p1-library-dhimitrimano/library-commands.cpp':
+Name                                   Regions    Miss   Cover     Lines    Miss   Cover
+----------------------------------------------------------------------------------------
+execute_commands(std::string const&)        42       0 100.00%        72       0 100.00%
+----------------------------------------------------------------------------------------
+TOTAL                                       42       0 100.00%        72       0 100.00%
+
+File '/home/NETID/dhimitri/2020au342c-p1-library-dhimitrimano/library.cpp':
+Name                                         Regions    Miss   Cover     Lines    Miss   Cover
+----------------------------------------------------------------------------------------------
+operator<<(std::ostream&, Library const&)          6       0 100.00%        11       0 100.00%
+Library::Library()                                 1       0 100.00%         1       0 100.00%
+Library::size() const                              1       0 100.00%         1       0 100.00%
+Library::max_size() const                          1       0 100.00%         1       0 100.00%
+Library::empty() const                             1       0 100.00%         1       0 100.00%
+Library::at(int) const                             9       0 100.00%        16       0 100.00%
+Library::front() const                             4       0 100.00%         7       0 100.00%
+Library::back() const                              4       0 100.00%         7       0 100.00%
+Library::push_back(std::string const&)             4       0 100.00%        10       0 100.00%
+Library::pop_back()                                4       0 100.00%         8       0 100.00%
+Library::erase(int)                               18       0 100.00%        30       0 100.00%
+Library::insertAt(int, std::string const&)        18       0 100.00%        34       0 100.00%
+----------------------------------------------------------------------------------------------
+TOTAL                                             71       0 100.00%       127       0 100.00%
+
+File '/home/NETID/dhimitri/2020au342c-p1-library-dhimitrimano/main.cpp':
+Name                                         Regions    Miss   Cover     Lines    Miss   Cover
+----------------------------------------------------------------------------------------------
+test1()                                            1       0 100.00%        10       0 100.00%
+test2()                                            1       0 100.00%        13       0 100.00%
+test3()                                            1       0 100.00%        19       0 100.00%
+test4()                                            1       0 100.00%        15       0 100.00%
+test5()                                            4       0 100.00%        41       0 100.00%
+main                                               6       0 100.00%        15       0 100.00%
+----------------------------------------------------------------------------------------------
+TOTAL                                             14       0 100.00%       113       0 100.00%
+/home/NETID/dhimitri/2020au342c-p1-library-dhimitrimano/library-commands.cpp:
+    1|       |// defines execute_commands for reading commands for library
+    2|       |
+    3|       |#include "library.h"
+    4|       |#include <cassert>
+    5|       |#include <fstream>
+    6|       |#include <iostream>
+    7|       |#include <sstream>
+    8|       |#include <stdexcept>
+    9|       |
+   10|       |using namespace std;
+   11|       |
+   12|      4|void execute_commands(const string &filename) {
+   13|      4|  ifstream ifs(filename);
+   14|      4|  if (!ifs.good()) {
+   15|      1|    cout << "Failed to open " << filename << endl;
+   16|      1|    return;
+   17|      1|  }
+   18|      3|  Library lib;
+   19|     53|  while (ifs.good()) {
+   20|     50|    string command;
+   21|     50|    ifs >> command;
+   22|     50|    // single word commands
+   23|     50|    if (command == "size") {
+   24|      3|      cout << "Executing: " << command << endl;
+   25|      3|      cout << lib.size() << endl;
+   26|     47|    } else if (command == "max_size") {
+   27|      1|      cout << "Executing: " << command << endl;
+   28|      1|      cout << lib.max_size() << endl;
+   29|     46|    } else if (command == "empty") {
+   30|      2|      cout << "Executing: " << command << endl;
+   31|      2|      cout << lib.empty() << endl;
+   32|     44|    } else if (command == "front") {
+   33|      3|      cout << "Executing: " << command << endl;
+   34|      3|      cout << lib.front() << endl;
+   35|     41|    } else if (command == "back") {
+   36|      3|      cout << "Executing: " << command << endl;
+   37|      3|      cout << lib.back() << endl;
+   38|     38|    } else if (command == "pop_back") {
+   39|      2|      // no output
+   40|      2|      cout << "Executing: " << command << endl;
+   41|      2|      lib.pop_back();
+   42|     36|    } else if (command == "print") {
+   43|      8|      // call insertion operator
+   44|      8|      cout << "Executing: " << command << endl;
+   45|      8|      cout << lib << endl;
+   46|     28|    } else if (command == "at") {
+   47|      1|      int num;
+   48|      1|      ifs >> num;
+   49|      1|      cout << "Executing: " << command << " " << num << endl;
+   50|      1|      cout << lib.at(num) << endl;
+   51|     27|    } else if (command == "push_back") {
+   52|     17|      // no output
+   53|     17|      string book;
+   54|     17|      // skip the space after num
+   55|     17|      ifs.ignore();
+   56|     17|      // read the whole line, not just up to the first space
+   57|     17|      getline(ifs, book);
+   58|     17|      cout << "Executing: " << command << " " << book << endl;
+   59|     17|      lib.push_back(book);
+   60|     17|    } else if (command == "erase") {
+   61|      4|      // no output
+   62|      4|      int num;
+   63|      4|      ifs >> num;
+   64|      4|      cout << "Executing: " << command << " " << num << endl;
+   65|      4|      lib.erase(num);
+   66|      6|    } else if (command == "insertAt") {
+   67|      2|      // no output
+   68|      2|      int num;
+   69|      2|      string book;
+   70|      2|      ifs >> num;
+   71|      2|      // skip the space after num
+   72|      2|      ifs.ignore();
+   73|      2|      getline(ifs, book);
+   74|      2|      cout << "Executing: " << command << " " << num << " " << book << endl;
+   75|      2|      lib.insertAt(num, book);
+   76|      4|    } else if (command.empty()) {
+   77|      3|      // skip
+   78|      3|    } else {
+   79|      1|      cout << "Invalid command: " << command << endl;
+   80|      1|    }
+   81|     50|  }
+   82|      3|  ifs.close();
+   83|      3|}
+
+/home/NETID/dhimitri/2020au342c-p1-library-dhimitrimano/library.cpp:
+    1|       |#include "library.h"
+    2|       |#include <iostream>
+    3|       |
+    4|       |using namespace std;
+    5|       |
+    6|       |static const int MAX = 10;
+    7|       |string books[MAX]; // NOLINT - need to use static storage duration
+    8|       |int filledSize = 0;
+    9|       |const string NULL_BOOK{"NULL_Book"}; // NOLINT - same as above
+   10|       |
+   11|     18|ostream &operator<<(ostream &out, const Library &lib) {
+   12|     18|  out << "[";
+   13|     90|  for (int i = 0; i < lib.size(); i++) {
+   14|     72|    out << lib.at(i);
+   15|     72|    if (i < lib.size() - 1) {
+   16|     57|      out << ", ";
+   17|     57|    }
+   18|     72|  }
+   19|     18|  out << "]";
+   20|     18|  return out;
+   21|     18|}
+   22|       |
+   23|       |// Use the compiler generated constructor
+   24|      8|Library::Library() = default;
+   25|       |
+   26|       |// Return size
+   27|    171|int Library::size() const { return filledSize; }
+   28|       |
+   29|       |// Return maximum size
+   30|     11|int Library::max_size() const { return MAX; }
+   31|       |
+   32|       |// Test whether Library is empty
+   33|      4|bool Library::empty() const { return filledSize == 0; }
+   34|       |
+   35|       |// Access element
+   36|     78|const string &Library::at(int n) const {
+   37|     78|  if (n > -1 && n < MAX) {
+   38|     77|    if (n < filledSize) {
+   39|     75|      return books[n];
+   40|     75|    }
+   41|      2|    cerr << "illegal exception 1"
+   42|      2|         << "\nerror: no book at location " << n << endl;
+   43|      2|    return NULL_BOOK;
+   44|      2|  }
+   45|      1|  cerr << "illegal exception 2"
+   46|      1|       << "\nerror: invalid location " << n
+   47|      1|       << " is either less than zero or equal to or greater than the max size "
+   48|      1|          "of "
+   49|      1|       << MAX << endl;
+   50|      1|  return NULL_BOOK;
+   51|      1|}
+   52|       |
+   53|       |// Access first element
+   54|      6|const string &Library::front() const {
+   55|      6|  if (filledSize == 0) {
+   56|      1|    cerr << "illegal exception 3\nerror: library is empty\n";
+   57|      1|    return NULL_BOOK;
+   58|      1|  }
+   59|      5|  return books[0];
+   60|      5|}
+   61|       |
+   62|       |// Access last element (public member function )
+   63|      6|const string &Library::back() const {
+   64|      6|  if (filledSize > 0) {
+   65|      5|    return books[filledSize - 1];
+   66|      5|  }
+   67|      1|  cerr << "illegal exception 4\nerror: library is empty\n";
+   68|      1|  return NULL_BOOK;
+   69|      1|}
+   70|       |
+   71|       |// Add element at the end
+   72|     35|void Library::push_back(const string &book) {
+   73|     35|  if (filledSize < MAX) {
+   74|     33|    books[filledSize] = book;
+   75|     33|    filledSize++;
+   76|     33|  } else {
+   77|      2|    cerr << "illegal exception 5"
+   78|      2|         << "\nerror: library is full, so book " << book
+   79|      2|         << " cannot be inserted\n";
+   80|      2|  }
+   81|     35|}
+   82|       |
+   83|       |// Delete last
+   84|      3|void Library::pop_back() {
+   85|      3|  if (filledSize > 0) {
+   86|      2|    books[filledSize - 1] = "";
+   87|      2|    filledSize--;
+   88|      2|  } else {
+   89|      1|    cerr << "illegal exception 6\nerror: library is empty\n";
+   90|      1|  }
+   91|      3|}
+   92|       |
+   93|       |// Erase element at location
+   94|     10|void Library::erase(int n) {
+   95|     10|  if (n > -1 && n < MAX) {
+   96|      9|    if (n == filledSize - 1) {
+   97|      1|      return pop_back();
+   98|      1|    }
+   99|      8|    if (n < filledSize - 1) {
+  100|      6|      filledSize--;
+  101|      6|      string temp;
+  102|      6|      books[n] = "";
+  103|     28|      for (int i = n; i < filledSize; i++) {
+  104|     22|        books[i] = temp;
+  105|     22|        temp = books[i];
+  106|     22|        books[i] = books[i + 1];
+  107|     22|      }
+  108|      6|      books[filledSize] = "";
+  109|     32|      for (int i = 0; i < filledSize; i++) {
+  110|     26|        cout << i << ": " << books[i] << endl;
+  111|     26|      }
+  112|      6|    } else {
+  113|      2|      cerr << "illegal exception 7"
+  114|      2|           << "\nerror: no book at location " << n << endl;
+  115|      2|    }
+  116|      8|  } else {
+  117|      1|    cerr << "illegal exception 8"
+  118|      1|         << "\nerror: invalid location " << n
+  119|      1|         << " is either less than zero or equal to or greater than the max "
+  120|      1|            "size of "
+  121|      1|         << MAX << endl;
+  122|      1|  }
+  123|     10|}
+  124|       |
+  125|       |// Insert element at location, moves other elements as needed
+  126|      9|void Library::insertAt(int n, const string &book) {
+  127|      9|  if (n > -1 && n < MAX) {
+  128|      8|    if (filledSize < MAX) {
+  129|      7|      if (n == filledSize) {
+  130|      2|        return push_back(book);
+  131|      2|      }
+  132|      5|      if (n < filledSize) {
+  133|      4|        filledSize++;
+  134|      4|        string temp;
+  135|     21|        for (int i = filledSize - 1; i > n; i--) {
+  136|     17|          books[i] = temp;
+  137|     17|          temp = books[i];
+  138|     17|          books[i] = books[i - 1];
+  139|     17|        }
+  140|      4|        books[n] = book;
+  141|      4|      } else {
+  142|      1|        cerr << "illegal exception 9"
+  143|      1|             << "\nerror: size " << filledSize
+  144|      1|             << " is greater than the max size of " << MAX << ", so book "
+  145|      1|             << book << " cannot be inserted in location " << n << endl;
+  146|      1|      }
+  147|      5|    } else {
+  148|      1|      cerr << "illegal exception 10"
+  149|      1|           << "\nerror: location " << n << " is out of bounds, so book " << book
+  150|      1|           << " cannot be inserted\n";
+  151|      1|    }
+  152|      8|  } else {
+  153|      1|    cerr << "illegal exception 11"
+  154|      1|         << "\nerror: invalid location " << n
+  155|      1|         << " is either less than zero or equal to or greater than the max "
+  156|      1|            "size of "
+  157|      1|         << MAX << ", so book " << book << " cannot be inserted" << endl;
+  158|      1|  }
+  159|      9|};
+
+/home/NETID/dhimitri/2020au342c-p1-library-dhimitrimano/main.cpp:
+    1|       |
+    2|       |#include "library.h"
+    3|       |#include <cassert>
+    4|       |#include <fstream>
+    5|       |#include <iostream>
+    6|       |#include <sstream>
+    7|       |#include <stdexcept>
+    8|       |
+    9|       |using namespace std;
+   10|       |
+   11|       |// forward delaration, defined in library-commands.cpp
+   12|       |void execute_commands(const string &filename);
+   13|       |
+   14|      1|void test1() {
+   15|      1|  Library lib;
+   16|      1|  stringstream ss;
+   17|      1|  // NOLINTNEXTLINE - would normally use empty
+   18|      1|  assert(lib.size() == 0);
+   19|      1|  assert(lib.empty());
+   20|      1|  ss << lib;
+   21|      1|  assert(ss.str() == "[]");
+   22|      1|  cout << "test1 complete" << endl;
+   23|      1|}
+   24|       |
+   25|      1|void test2() {
+   26|      1|  Library lib;
+   27|      1|  stringstream ss;
+   28|      1|  lib.push_back("Ulysses");
+   29|      1|  assert(lib.size() == 1);
+   30|      1|  assert(!lib.empty());
+   31|      1|  assert(lib.at(0) == "Ulysses");
+   32|      1|  assert(lib.front() == lib.back());
+   33|      1|  ss.str("");
+   34|      1|  ss << lib;
+   35|      1|  assert(ss.str() == "[Ulysses]");
+   36|      1|  cout << "test2 complete" << endl;
+   37|      1|}
+   38|       |
+   39|      1|void test3() {
+   40|      1|  Library lib;
+   41|      1|  stringstream ss;
+   42|      1|  lib.push_back("Ulysses");
+   43|      1|  lib.push_back("Gatsby");
+   44|      1|  assert(lib.size() == 2);
+   45|      1|  assert(lib.at(0) == lib.front());
+   46|      1|  assert(lib.at(1) == lib.back());
+   47|      1|  ss.str("");
+   48|      1|  ss << lib;
+   49|      1|  assert(ss.str() == "[Ulysses, Gatsby]");
+   50|      1|
+   51|      1|  lib.erase(0);
+   52|      1|  assert(lib.front() == lib.back());
+   53|      1|  ss.str("");
+   54|      1|  ss << lib;
+   55|      1|  assert(ss.str() == "[Gatsby]");
+   56|      1|  cout << "test3 complete" << endl;
+   57|      1|}
+   58|       |
+   59|      1|void test4() {
+   60|      1|  Library lib;
+   61|      1|  stringstream ss;
+   62|      1|  lib.push_back("Ulysses");
+   63|      1|  lib.push_back("Gatsby");
+   64|      1|  lib.insertAt(lib.size(), "Harry Potter");
+   65|      1|  lib.insertAt(0, "Don Quixote");
+   66|      1|  ss << lib;
+   67|      1|  assert(ss.str() == "[Don Quixote, Ulysses, Gatsby, Harry Potter]");
+   68|      1|  lib.erase(1);
+   69|      1|  ss.str("");
+   70|      1|  ss << lib;
+   71|      1|  assert(ss.str() == "[Don Quixote, Gatsby, Harry Potter]");
+   72|      1|  cout << "test4 complete" << endl;
+   73|      1|}
+   74|       |
+   75|      1|void test5() {
+   76|      1|  // assuming max_size() = 10
+   77|      1|  Library lib;
+   78|      1|  lib.size();
+   79|      1|  stringstream ss;
+   80|     10|  for (int i = 0; i < lib.max_size() - 1; i++) {
+   81|      9|    lib.push_back("book " + to_string(i + 1));
+   82|      9|  }
+   83|      1|  lib.push_back("final book");
+   84|      1|  cout << lib.size() << endl;
+   85|      1|  lib.push_back("missingbk");
+   86|      1|  ss.str("");
+   87|      1|  ss << lib;
+   88|      1|  assert(ss.str() == "[book 1, book 2, book 3, book 4, book 5, book 6, book 7, "
+   89|      1|                     "book 8, book 9, final book]");
+   90|      1|  lib.insertAt(7, "book -2");
+   91|      1|  lib.erase(2);
+   92|      1|  lib.at(9);
+   93|      1|  lib.at(-1);
+   94|      1|  lib.insertAt(7, "book -2");
+   95|      1|  ss.str("");
+   96|      1|  ss << lib;
+   97|      1|  assert(ss.str() == "[book 1, book 2, book 4, book 5, book 6, book 7, book 8, "
+   98|      1|                     "book -2, book 9, final book]");
+   99|      1|  lib.erase(9);
+  100|      1|  lib.insertAt(9, "vinyl booke");
+  101|      1|  ss.str("");
+  102|      1|  ss << lib;
+  103|      1|  assert(ss.str() == "[book 1, book 2, book 4, book 5, book 6, book 7, book 8, "
+  104|      1|                     "book -2, book 9, vinyl booke]");
+  105|      1|  lib.erase(0);
+  106|      1|  lib.insertAt(0, "the book");
+  107|      1|  ss.str("");
+  108|      1|  ss << lib;
+  109|      1|  assert(ss.str() == "[the book, book 2, book 4, book 5, book 6, book 7, book "
+  110|      1|                     "8, book -2, book 9, vinyl booke]");
+  111|      1|  lib.erase(14);
+  112|      1|  lib.insertAt(-4, "book at -4");
+  113|      1|
+  114|      1|  cout << "test5 complete" << endl;
+  115|      1|}
+  116|       |
+  117|      1|int main(int argc, char *argv[]) {
+  118|      1|  test1();
+  119|      1|  test2();
+  120|      1|  test3();
+  121|      1|  test4();
+  122|      1|  test5();
+  123|      1|  if (argc >= 1) {
+  124|      5|    for (int i = 1; i < argc; ++i) {
+  125|      4|      string commandFile = argv[i];
+  126|      4|      cout << "*** Executing commands from " << commandFile << endl;
+  127|      4|      execute_commands(commandFile);
+  128|      4|    }
+  129|      1|  }
+  130|      1|  cout << "Done." << endl;
+  131|      1|}
+
+Sun Oct 11 12:25:11 PDT 2020
+=====================================================
+To create an output.txt file with all the output from this script
+Run the below command
+      ./create-output.sh > output.txt 2>&1 
+=====================================================

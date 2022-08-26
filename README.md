@@ -2,7 +2,7 @@
 
 Implements a Library class.
 
-Introduces the following concepts:
+Demonstrates the following concepts:
 
 - using shell scripts to fully test programs
 - command line parameters

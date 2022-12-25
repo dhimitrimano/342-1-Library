@@ -2,6 +2,10 @@
 
 Implements a Library class.
 
+Credits:<br>
+Shell scripts and starter code provided by Yusuf Pisan<br>
+Library class implementation by Dhimitri Mano
+
 Demonstrates the following concepts:
 
 - using shell scripts to fully test programs
